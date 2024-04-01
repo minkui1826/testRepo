@@ -10,7 +10,7 @@ int main()
     {
         for(int j=0;j<SIZE;j++)
         {
-            scanf(" %d",&arr[i][j]);
+            scanf(" %d",&arr[i][j]);   //2차원 배열 입력받기
         }
     }
 
@@ -18,7 +18,7 @@ int main()
     {
         for(int j=0;j<i;j++)
         {
-            sum+=arr[i][j];
+            sum+=arr[i][j];  //대각원소 아래 원소 총합
         }
     }
     printf("SUM : %d",sum);
