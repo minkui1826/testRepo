@@ -18,6 +18,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <div>
+        안녕 난 바보가 아니다
+      </div>
     </div>
   );
 }
