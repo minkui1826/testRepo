@@ -54,28 +54,48 @@ void print_node(struct node *start)
     printf("%d\n",ptr->data);
 }
 
+struct node *interchange(struct node *start,int k)
+{
+    struct node *ptr=start,*ptr_next,*ptr_prev,*ptr_next_next;
+    for(int i=0;i<k-1;i++) ptr=ptr->next;
+    if(ptr->next==start)
+    {
+        printf("No k+1");
+        return start;
+    }
+    if(ptr->next!=start->prev)
+    {
+        ptr_next=ptr->next;
+        ptr_prev=ptr->prev;
+        ptr_next_next=ptr_next->next;
+        
+    }
+    else if(ptr->next==start->prev)
+    {
+        ptr_next=ptr->next;
+        ptr_prev=ptr->prev;
+        ptr_next_next=start;
+    }
+    ptr_prev->next=ptr_next;
+    ptr->prev=ptr_next;
+    ptr->next=ptr_next_next;
+    ptr_next->prev=ptr_prev;
+    ptr_next->next=ptr;
+    ptr_next_next->prev=ptr;
+    if(ptr==start) start=ptr_next;
+
+    return start;
+}
+
 int main()
 {
-    struct node *ptr_1, *ptr_2;
-    int temp;
-    start = create_dcll(start);
-    ptr_1=start;
-    ptr_2=ptr_1->next;
-    while(ptr_1->next!=start)
-    {
-        while(ptr_2!=start)
-        {
-            if(ptr_1->data > ptr_2->data)
-            {
-                temp = ptr_1->data;
-                ptr_1->data=ptr_2->data;
-                ptr_2->data=temp;
-            }
-            ptr_2=ptr_2->next;
-        }
-        ptr_1=ptr_1->next;
-        ptr_2=ptr_1->next;
-    }
+    int k;
+    start=create_dcll(start);
+    print_node(start);
+
+    printf("Enter k:");
+    scanf("%d",&k);
+    start=interchange(start,k);
     print_node(start);
     return 0;
 }
