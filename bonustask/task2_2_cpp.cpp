@@ -45,4 +45,38 @@ public:
             this->size++;
         }
     }
+
+    int pop() {
+        Node* crnt_node = this->front;
+        int data = crnt_node->data;
+        this->front = crnt_node->next;
+        delete crnt_node;
+        return data;
+    }
+
+    int peek() {
+        return this->front->data;
+    }
+};
+
+int main() {
+    Queue q;
+
+    std::cout << "is_empty? " << q.is_empty() << "\n";
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    q.push(4);
+    std::cout << "is_empty? " << q.is_empty() << "\n";
+    q.push(5);
+    q.push(6);
+    q.push(7);
+    std::cout << "is_full? " << q.is_full() << "\n";
+    q.push(8);
+    q.push(9);
+    q.push(10);
+    std::cout << "is_full? " << q.is_full() << "\n";
+    std::cout << "pop? " << q.pop() << "\n";
+    std::cout << "peek? " << q.peek() << "\n";
+
 }
